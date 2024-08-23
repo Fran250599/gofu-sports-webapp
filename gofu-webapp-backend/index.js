@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.send('Todo funciona!!');
 });
 
 // Start the server
