@@ -1,4 +1,4 @@
-# GOFU Sports Web Application
+# GOFU Sports Web Application Frontend
 
 To set up this project:
 - Run ``npm install`` to install the dependencies.
