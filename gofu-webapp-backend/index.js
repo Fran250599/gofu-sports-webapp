@@ -22,4 +22,25 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-db()
+//Prueba para MongoDB
+const producto = {
+  nombre: "Nombre del Producto",
+  descripcion: "Descripción detallada del producto",
+  categorias: ["Cat1", "Cat2"],
+  imagenURL: "https://example.com/imagen-del-producto.jpg",
+  precio: 100.50,
+  disponibilidad: true,
+  fecha_creacion: new Date()
+};
+
+async function agregarProducto(db, producto) {
+  try {
+    const collection = db.collection('Productos');
+    const result = await collection.insertOne(producto);
+    console.log('Producto insertado:', result.insertedId);
+  } catch (error) {
+    console.error('Error al insertar el producto', error);
+  }
+}
+
+//db().then(db => agregarProducto(db, producto));
