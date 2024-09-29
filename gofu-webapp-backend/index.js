@@ -44,3 +44,14 @@ async function agregarProducto(db, producto) {
 }
 
 //db().then(db => agregarProducto(db, producto));
+
+app.post('/productos', async (req, res) => {
+  try {
+    const dbConnection = await db();
+    const collection = dbConnection.collection('Productos');
+    const result = await collection.insertOne(req.body);
+    res.status(201).json({ message: 'Producto insertado con exito', id: result.insertedId });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al insertar el producto' });
+  }
+});
