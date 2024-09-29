@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const url = 'mongodb+srv://camilogonzalezfuentes:gofuproyect@cluster0.icn3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const url = process.env.MONGODB_URI;
 const client = new MongoClient(url);
 const connectToDatabase = async () => {
     try {
