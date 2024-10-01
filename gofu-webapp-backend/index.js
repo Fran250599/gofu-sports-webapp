@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const db = require('./database/db');
+const { ObjectId } = require('mongodb');
+
 
 dotenv.config();
 
@@ -44,3 +46,42 @@ async function agregarProducto(db, producto) {
 }
 
 //db().then(db => agregarProducto(db, producto));
+
+app.get('/productos', async (req, res) => {
+  try {
+    const dbConnection = await db();
+    const collection = dbConnection.collection('Productos');
+    const result = await collection.find({}).toArray();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener los productos' });
+  }
+});
+
+app.post('/productos', async (req, res) => {
+  try {
+    const dbConnection = await db();
+    const collection = dbConnection.collection('Productos');
+    const date = new Date();
+    req.body.fecha_creacion = date;
+    const result = await collection.insertOne(req.body);
+    res.status(201).json({ message: 'Producto insertado con exito', id: result.insertedId });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al insertar el producto' });
+  }
+});
+
+app.put('/productos/:id', async (req, res) => {
+  try {
+    const dbConnection = await db();
+    const collection = dbConnection.collection('Productos');
+    const result = await collection.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $set: req.body }
+    );
+    res.status(200).json({ message: 'Producto actualizado con exito' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al actualizar el producto', message: error.message });
+  }
+});
+
