@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI_CAMILO;
 const client = new MongoClient(url);
 const connectToDatabase = async () => {
     try {
