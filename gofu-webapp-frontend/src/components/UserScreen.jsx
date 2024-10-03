@@ -5,7 +5,7 @@ import HeaderComponent from './header/HeaderComponent';
 import CategoryNavBar from './products/CategoryNavBar';
 
 const UserScreen = () => {
-  const { products, categories, loading, error, searchProducts } = useSearchProducts();
+  const { products, categories, loading, error, searchProducts } = useSearchProducts(false); // alternar entre usar la api o los datos quemados. False = quemados ; True = API
   const [searchQuery, setSearchQuery] = useState('');  // Estado para la barra de búsqueda
   const [selectedCategory, setSelectedCategory] = useState(null);  // Estado para la categoría seleccionada
   const [currentPage, setCurrentPage] = useState(1);  // Estado para la página actual
