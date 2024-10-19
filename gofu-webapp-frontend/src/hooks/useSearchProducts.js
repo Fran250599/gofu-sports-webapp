@@ -15,16 +15,17 @@ const useSearchProducts = (useRealApi = false) => {
       if (useRealApi) {
         let url = 'http://localhost:5000/productos';
         let params = {};
-        
+
         if (query.trim() !== '') {
           params.q = query;
         }
-        
+
         if (selectedCategory) {
           params.categoria = selectedCategory;
         }
 
         const response = await axios.get(url, { params });
+        console.log("Datos recibidos de la API:", response.data);
         setProducts(response.data);
       } else {
         let filteredProducts = sampleProducts;

@@ -27,7 +27,7 @@ const ProductList = ({ products, currentPage, setCurrentPage }) => {
       {/* Lista de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
 
@@ -37,9 +37,8 @@ const ProductList = ({ products, currentPage, setCurrentPage }) => {
         <button
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`mx-2 px-3 py-1 rounded-md ${
-            currentPage === 1 ? 'bg-gray-300' : 'bg-blue-500 text-white'
-          }`}
+          className={`mx-2 px-3 py-1 rounded-md ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-500 text-white'
+            }`}
         >
           Anterior
         </button>
@@ -48,9 +47,8 @@ const ProductList = ({ products, currentPage, setCurrentPage }) => {
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`mx-2 px-3 py-1 rounded-md ${
-            currentPage === totalPages ? 'bg-gray-300' : 'bg-blue-500 text-white'
-          }`}
+          className={`mx-2 px-3 py-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-blue-500 text-white'
+            }`}
         >
           Siguiente
         </button>
