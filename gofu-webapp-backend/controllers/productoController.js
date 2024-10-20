@@ -1,5 +1,16 @@
 const { ObjectId } = require('mongodb');
 const db = require('../database/db');
+const productoSchema = require('../models/productoModel')
+
+// Función para validar el producto según el esquema
+function validateProduct(product) {
+    const keys = Object.keys(productoSchema);
+    for (let key of keys) {
+        if (typeof product[key] !== typeof productoSchema[key]()) {
+            throw new Error(`Tipo inválido para ${key}. Se esperaba ${typeof productoSchema[key]().name}.`);
+        }
+    }
+}
 
 exports.obtenerProductos = async (req, res) => {
     try {
@@ -14,6 +25,9 @@ exports.obtenerProductos = async (req, res) => {
 
 exports.agregarProducto = async (req, res) => {
     try {
+
+        validateProduct(req.body);
+
         const dbConnection = await db();
         const collection = dbConnection.collection('Productos');
         const producto = { ...req.body, fecha_creacion: new Date() };
