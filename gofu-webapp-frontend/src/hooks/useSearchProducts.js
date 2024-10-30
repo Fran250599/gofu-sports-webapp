@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { sampleProducts, sampleCategories } from '../data/sampleProducts';
 
-const useSearchProducts = (useRealApi = false) => {
+const useSearchProducts = (useRealApi = true) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
