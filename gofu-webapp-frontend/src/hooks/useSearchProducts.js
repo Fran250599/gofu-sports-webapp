@@ -26,7 +26,22 @@ const useSearchProducts = (useRealApi = true) => {
 
         const response = await axios.get(url, { params });
         console.log("Datos recibidos de la API:", response.data);
-        setProducts(response.data);
+
+        let filteredProducts = response.data;
+
+        if (selectedCategory) {
+          filteredProducts = filteredProducts.filter((product) =>
+            product.categories.includes(selectedCategory)
+          );
+        }
+
+        if (query.trim() !== '') {
+          filteredProducts = filteredProducts.filter((product) =>
+            product.name.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        setProducts(filteredProducts);
       } else {
         let filteredProducts = sampleProducts;
 
