@@ -20,11 +20,6 @@ app.use('/productos', productoRoutes);
 app.use('/categorias', categoriaRoutes);
 app.use('/admin', adminRoutes);
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Todo funciona!!');
-});
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

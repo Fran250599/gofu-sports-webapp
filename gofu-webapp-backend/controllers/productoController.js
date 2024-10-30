@@ -17,7 +17,7 @@ exports.obtenerProductos = async (req, res) => {
         const dbConnection = await db();
         const collection = dbConnection.collection('Productos');
         const result = await collection.find({}).toArray();
-        res.json(result);
+        res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los productos' });
     }
