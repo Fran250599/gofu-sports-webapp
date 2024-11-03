@@ -49,7 +49,7 @@ const AdminScreen = () => {
     {showAddModal ? <ProductFormModal onClose={onClose} onSave={onAddProduct}/> : null}
     <div className="p-0 m-0">
       <HeaderComponent onSearch={handleSearch} />
-      <CategoryNavBar categories={categories} onSelectCategory={handleSelectCategory} />
+      <CategoryNavBar categories={categories} onSelectCategory={handleSelectCategory}  isAdmin={true}/>
       {/* Ajustar el padding-top para que los productos estén justo debajo del nav */}
       <div className="pt-32 px-4">  {/* pt-32 asegura que haya espacio justo debajo del nav */}
         <span className='flex justify-between align-middle mb-6'>
@@ -58,7 +58,7 @@ const AdminScreen = () => {
           className=" bg-blue-500 text-white py-1 px-4 rounded-md"
           onClick={() => {setShowAddModal(true)}}
         >
-          Agregar
+          Agregar Producto
         </button>
         </span>
         

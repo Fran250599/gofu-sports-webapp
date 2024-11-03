@@ -39,3 +39,36 @@ export const addProduct = async (data) => {
     return 400;
   } 
 }
+
+export const borrarCategoria = async (id) => {
+  try {
+    const response =  await axios.delete(`http://localhost:5000/categorias/${id}`);
+    return response.status;
+  } catch (err) {
+    console.error(err);
+    return 400;
+  } 
+}
+
+
+export const agregarCategoria = async (data) => {
+  try {
+    const response =  await axios.post(`http://localhost:5000/categorias/`, data);
+    return response.status;
+  } catch (err) {
+    console.error(err);
+    return 400;
+  } 
+}
+
+
+export const login = async (data) => {
+  try {
+    //const response =  await axios.post(`http://localhost:5000/login/`, data);
+    //return response.status;
+    return 200;
+  } catch (err) {
+    console.error(err);
+    return 400;
+  } 
+}

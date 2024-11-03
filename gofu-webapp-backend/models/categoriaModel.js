@@ -1,5 +1,4 @@
 const categoriaSchema = {
-    id: Number,
     name: String,
 }
 
