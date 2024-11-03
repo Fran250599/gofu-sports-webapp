@@ -3,7 +3,7 @@ import DeleteCategoryConfirmationModal from './category-delete-modal';
 import { agregarCategoria, borrarCategoria } from '../../hooks/api-service';
 import CategoryForm from './category-form';
 
-const CategoryNavBar = ({ categories, onSelectCategory, isAdmin = false }) => {
+const CategoryNavBar = ({ categories, onSelectCategory, isAdmin = false, categoryDeleted }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCategoryToDelete, setSelectedCategoryToDelete] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false); 
@@ -23,7 +23,7 @@ const CategoryNavBar = ({ categories, onSelectCategory, isAdmin = false }) => {
 
     if (response === 200 ) {
       alert(`La categoria fue borrado exitosamente!`)
-      window.location.reload()
+      categoryDeleted(selectedCategoryToDelete.name)
     }else{
       alert(`La categoriano no pudo ser borrada!`)
     }

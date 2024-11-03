@@ -4,7 +4,7 @@ import ProductList from './products/ProductList';
 import HeaderComponent from './header/HeaderComponent';
 import CategoryNavBar from './products/CategoryNavBar';
 import ProductFormModal from './products/product-form';
-import { addProduct } from '../hooks/api-service';
+import { addProduct, editProduct } from '../hooks/api-service';
 
 const AdminScreen = () => {
   const { products, categories, loading, error, searchProducts } = useSearchProducts(true); // alternar entre usar la api o los datos quemados. False = quemados ; True = API
@@ -44,12 +44,45 @@ const AdminScreen = () => {
     }
   }
 
+  const onDeleteCategory = async (category) => {
+    for (let product of products) {
+      // Verificar si el producto tiene la categoría a eliminar
+      if (product.categories.includes(category)) {
+        // Eliminar la categoría de la lista de categorías
+        product.categories = product.categories.filter(cat => cat !== category);
+  
+        // Preparar los datos para la actualización
+        const updatedProductData = {
+          name: product.name,
+          categories: product.categories,
+          description: product.description,
+          price: product.price,
+          image: product.image
+        };
+  
+        try {
+          // Llamada al endpoint de actualización con los datos actualizados
+          const response = await editProduct( updatedProductData, product._id);
+          
+          if (response.status === 200) {
+            console.log(`Producto '${product.name}' actualizado con éxito.`);
+          } else {
+            console.error(`Error al actualizar el producto '${product.name}'.`);
+          }
+        } catch (error) {
+          console.error(`Error al actualizar el producto '${product.name}':`, error);
+        }
+      }
+    }
+    window.location.reload()
+  }
+
   return (
     <>
     {showAddModal ? <ProductFormModal onClose={onClose} onSave={onAddProduct}/> : null}
     <div className="p-0 m-0">
       <HeaderComponent onSearch={handleSearch} />
-      <CategoryNavBar categories={categories} onSelectCategory={handleSelectCategory}  isAdmin={true}/>
+      <CategoryNavBar categories={categories} onSelectCategory={handleSelectCategory}  isAdmin={true} categoryDeleted={onDeleteCategory}/>
       {/* Ajustar el padding-top para que los productos estén justo debajo del nav */}
       <div className="pt-32 px-4">  {/* pt-32 asegura que haya espacio justo debajo del nav */}
         <span className='flex justify-between align-middle mb-6'>
