@@ -1,5 +1,4 @@
 const productoSchema = {
-    id: Number,
     name: String,
     categories: Array,
     description: String,

@@ -7,7 +7,7 @@ exports.obtenerCategorias = async (req, res) => {
         const dbConnection = await db();
         const collection = dbConnection.collection('Categorias');
         const result = await collection.find({}).toArray();
-        const categories = result.map((category) => category.name);
+        const categories = result.map((category) => category);
 
         res.status(200).json(categories);
     } catch (error) {
@@ -21,7 +21,6 @@ exports.agregarCategoria = async (req, res) => {
         const dbConnection = await db();
         const collection = dbConnection.collection('Categorias');
         const categoria = { ...req.body };
-        console.log(categoria)
         const result = await collection.insertOne(categoria);
         res.status(201).json({ message: 'Categoria insertada con exito', id: result.insertedId });
     } catch (error) {

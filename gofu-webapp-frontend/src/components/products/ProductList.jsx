@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ProductCard from './ProductCard';
 
-const ProductList = ({ products, currentPage, setCurrentPage }) => {
+const ProductList = ({ products, currentPage, setCurrentPage, isAdmin = false}) => {
   const productsPerPage = 6;  // Número máximo de productos por página
 
   // Calcular el número total de páginas
@@ -27,7 +27,7 @@ const ProductList = ({ products, currentPage, setCurrentPage }) => {
       {/* Lista de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} isAdmin={isAdmin} />
         ))}
       </div>
 

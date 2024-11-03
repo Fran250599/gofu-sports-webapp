@@ -25,7 +25,12 @@ exports.obtenerProductos = async (req, res) => {
 
 exports.agregarProducto = async (req, res) => {
     try {
-
+        if (typeof req.body.price === 'string') {
+            req.body.price = parseFloat(req.body.price);
+            if (isNaN(req.body.price)) {
+                throw new Error('El precio no es un número válido');
+            }
+        }
         validateProduct(req.body);
 
         const dbConnection = await db();
@@ -49,5 +54,22 @@ exports.actualizarProducto = async (req, res) => {
         res.status(200).json({ message: 'Producto actualizado con exito' });
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar el producto', message: error.message });
+    }
+};
+
+exports.eliminarProducto = async (req, res) => {
+    try {
+        const dbConnection = await db();
+        const collection = dbConnection.collection('Productos');
+        const result = await collection.deleteOne({ _id: new ObjectId(req.params.id) });
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Producto no encontrado' });
+        }
+
+        res.status(200).json({ message: 'Producto eliminado con éxito' });
+    } catch (error) {
+        console.error('Error al eliminar el producto:', error);
+        res.status(500).json({ error: 'Error al eliminar el producto', message: error.message });
     }
 };

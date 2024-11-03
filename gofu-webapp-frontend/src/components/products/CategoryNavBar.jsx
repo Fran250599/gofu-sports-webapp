@@ -17,13 +17,13 @@ const CategoryNavBar = ({ categories, onSelectCategory }) => {
     <div className="bg-gray-800 fixed top-16 left-0 w-full z-10 flex overflow-x-auto px-4 py-2"> {/* top-16 asegura que esté justo debajo del header */}
       {categories.map((category) => (
         <button
-          key={category}
-          onClick={() => handleCategoryClick(category)}
+          key={category.name}
+          onClick={() => handleCategoryClick(category.name)}
           className={`p-2 mx-1 rounded-md min-w-[80px] ${
-            selectedCategory === category ? 'bg-blue-600 text-white' : 'bg-gray-300 text-black'
+            selectedCategory === category.name ? 'bg-blue-600 text-white' : 'bg-gray-300 text-black'
           }`}
         >
-          {category}
+          {category.name}
         </button>
       ))}
     </div>
