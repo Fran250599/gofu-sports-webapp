@@ -39,6 +39,7 @@ const AdminScreen = () => {
     const response = await addProduct(data);
     if (response === 201 ) {
       alert(`El producto ${data.name} fue agregado exitosamente!`)
+      window.location.reload()
     }else{
       alert(`El producto ${data.name} no pudo ser agregado!`)
     }
