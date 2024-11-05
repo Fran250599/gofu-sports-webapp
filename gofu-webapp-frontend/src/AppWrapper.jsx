@@ -14,7 +14,7 @@ function AppWrapper() {
 
   useEffect(() => {
     // Verificar si el usuario intenta acceder a la ruta /admin
-    if (location.pathname === '/admin') {
+    if (location.pathname.toLowerCase() === '/admin') {
       const usuario = localStorage.getItem('usuario');
       if (!usuario) {
         // Redirigir al login si no hay un usuario en localStorage

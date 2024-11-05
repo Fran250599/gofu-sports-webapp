@@ -13,7 +13,7 @@ const useSearchProducts = (useRealApi = true) => {
     setError(null);
     try {
       if (useRealApi) {
-        let url = 'http://localhost:5000/productos';
+        let url = 'https://n6nhhqnh-5000.use2.devtunnels.ms/productos';
         let params = {};
 
         if (query.trim() !== '') {
@@ -72,7 +72,7 @@ const useSearchProducts = (useRealApi = true) => {
     setError(null);
     try {
       if (useRealApi) {
-        const response = await axios.get('http://localhost:5000/categorias');
+        const response = await axios.get('https://n6nhhqnh-5000.use2.devtunnels.ms/categorias');
         setCategories(response.data);
       } else {
         // Simulación de tiempo de espera para la API

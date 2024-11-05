@@ -6,7 +6,8 @@ const { loginAdmin } = require('../login/auth');
 // Endpoint para el login del administrador
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-
+    console.log(username)
+    console.log(password)
     try {
         const result = await loginAdmin(username, password);
         if (result.success) {

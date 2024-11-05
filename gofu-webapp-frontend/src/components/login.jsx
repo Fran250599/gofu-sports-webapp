@@ -25,7 +25,7 @@ const LoginForm = () => {
     const hashedPassword = bcrypt.hashSync(formData.password, salt);
 
     // Llamar a la función onSubmit con los datos encriptados
-    onSubmit({ username: formData.username, password: hashedPassword })
+    onSubmit({ username: formData.username, password: formData.password })
   };
 
   const onSubmit = async (params) => {

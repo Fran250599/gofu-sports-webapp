@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getCategories = async () => {
     try {
-        const response =  await axios.get('http://localhost:5000/categorias');
+        const response =  await axios.get('https://n6nhhqnh-5000.use2.devtunnels.ms/categorias');
         return response.data;
     } catch (err) {
       console.error(err);
@@ -11,7 +11,7 @@ export const getCategories = async () => {
 
 export const editProduct = async (data, id) => {
   try {
-    const response =  await axios.put(`http://localhost:5000/productos/${id}`, data);
+    const response =  await axios.put(`https://n6nhhqnh-5000.use2.devtunnels.ms/productos/${id}`, data);
     return response.status;
   } catch (err) {
     console.error(err);
@@ -21,7 +21,7 @@ export const editProduct = async (data, id) => {
 
 export const deleteProduct = async (id) => {
   try {
-    const response =  await axios.delete(`http://localhost:5000/productos/${id}`);
+    const response =  await axios.delete(`https://n6nhhqnh-5000.use2.devtunnels.ms/productos/${id}`);
     return response.status;
   } catch (err) {
     console.error(err);
@@ -32,7 +32,7 @@ export const deleteProduct = async (id) => {
 
 export const addProduct = async (data) => {
   try {
-    const response =  await axios.post(`http://localhost:5000/productos/`, data);
+    const response =  await axios.post(`https://n6nhhqnh-5000.use2.devtunnels.ms/productos/`, data);
     return response.status;
   } catch (err) {
     console.error(err);
@@ -42,7 +42,7 @@ export const addProduct = async (data) => {
 
 export const borrarCategoria = async (id) => {
   try {
-    const response =  await axios.delete(`http://localhost:5000/categorias/${id}`);
+    const response =  await axios.delete(`https://n6nhhqnh-5000.use2.devtunnels.ms/categorias/${id}`);
     return response.status;
   } catch (err) {
     console.error(err);
@@ -53,7 +53,7 @@ export const borrarCategoria = async (id) => {
 
 export const agregarCategoria = async (data) => {
   try {
-    const response =  await axios.post(`http://localhost:5000/categorias/`, data);
+    const response =  await axios.post(`https://n6nhhqnh-5000.use2.devtunnels.ms/categorias/`, data);
     return response.status;
   } catch (err) {
     console.error(err);
@@ -64,9 +64,8 @@ export const agregarCategoria = async (data) => {
 
 export const login = async (data) => {
   try {
-    //const response =  await axios.post(`http://localhost:5000/login/`, data);
-    //return response.status;
-    return 200;
+    const response =  await axios.post(`https://n6nhhqnh-5000.use2.devtunnels.ms/admin/login/`, data);
+    return response.status;
   } catch (err) {
     console.error(err);
     return 400;

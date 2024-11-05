@@ -19,14 +19,21 @@ const CategoryNavBar = ({ categories, onSelectCategory, isAdmin = false, categor
   };
 
   const onDeleteCategory = async (id) => {
-    const response = await borrarCategoria(id);
+    const canDeleteCategory = categoryDeleted(selectedCategoryToDelete.name)
+    console.log(canDeleteCategory)
+    if(canDeleteCategory) {
+       const response = await borrarCategoria(id);
 
-    if (response === 200 ) {
-      alert(`La categoria fue borrado exitosamente!`)
-      categoryDeleted(selectedCategoryToDelete.name)
+      if (response === 200 ) {
+        alert(`La categoria fue borrado exitosamente!`)
+        window.location.reload()
+      }else{
+        alert(`La categoriano no pudo ser borrada!`)
+      }
     }else{
-      alert(`La categoriano no pudo ser borrada!`)
+      alert("No se puede borrar la categoria ya que existen productos en esta categoria.")
     }
+   
   }
 
   const onClose = () => {

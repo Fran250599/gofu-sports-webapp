@@ -45,37 +45,39 @@ const AdminScreen = () => {
     }
   }
 
-  const onDeleteCategory = async (category) => {
+  const onDeleteCategory = (category) => {
+    console.log("La categoria a borrar es: ", category)
     for (let product of products) {
       // Verificar si el producto tiene la categoría a eliminar
       if (product.categories.includes(category)) {
+        return false;
         // Eliminar la categoría de la lista de categorías
-        product.categories = product.categories.filter(cat => cat !== category);
-  
+        // product.categories = product.categories.filter(cat => cat !== category);
+        
         // Preparar los datos para la actualización
-        const updatedProductData = {
-          name: product.name,
-          categories: product.categories,
-          description: product.description,
-          price: product.price,
-          image: product.image
-        };
+        // const updatedProductData = {
+        //   name: product.name,
+        //   categories: product.categories,
+        //   description: product.description,
+        //   price: product.price,
+        //   image: product.image
+        // };
   
-        try {
-          // Llamada al endpoint de actualización con los datos actualizados
-          const response = await editProduct( updatedProductData, product._id);
+        // try {
+        //   // Llamada al endpoint de actualización con los datos actualizados
+        //   const response = await editProduct( updatedProductData, product._id);
           
-          if (response.status === 200) {
-            console.log(`Producto '${product.name}' actualizado con éxito.`);
-          } else {
-            console.error(`Error al actualizar el producto '${product.name}'.`);
-          }
-        } catch (error) {
-          console.error(`Error al actualizar el producto '${product.name}':`, error);
-        }
+        //   if (response.status === 200) {
+        //     console.log(`Producto '${product.name}' actualizado con éxito.`);
+        //   } else {
+        //     console.error(`Error al actualizar el producto '${product.name}'.`);
+        //   }
+        // } catch (error) {
+        //   console.error(`Error al actualizar el producto '${product.name}':`, error);
+        // }
       }
     }
-    window.location.reload()
+    return true;
   }
 
   return (

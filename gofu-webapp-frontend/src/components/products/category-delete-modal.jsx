@@ -8,7 +8,7 @@ export const DeleteCategoryConfirmationModal = ({ category, onClose, onDelete })
       <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Confirmar Eliminación</h2>
         <p className="text-gray-700 dark:text-gray-300">
-        ¿Está seguro de que desea eliminar la <strong>{category.name}</strong>? Esta acción no se puede deshacery afectará a los productos que contengan esta categoría.
+        ¿Está seguro de que desea eliminar la <strong>{category.name}</strong>? Esta acción no se puede deshacer.
         </p>
         <div className="flex justify-end space-x-2 mt-4">
           <button
